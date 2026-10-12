@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Banana palette ---- */
+  --color-banana-50: #fffdf5;
+  --color-banana-100: #fffae0;
+  --color-banana-200: #fff2b3;
+  --color-banana-300: #ffe77a;
+  --color-banana-400: #ffd93d;
+  --color-banana-500: #ffc914; /* primary */
+  --color-banana-600: #f2a900;
+  --color-banana-700: #cc8400;
+  --color-banana-800: #a3680a;
+  --color-banana-900: #7a4f0e;
+
+  --color-peel-800: #4a3200;
+  --color-leaf-500: #6b8e23;
+  --color-leaf-600: #556b1f;
+
+  --color-ink-900: #2b2410;
+  --color-ink-700: #4a3f20;
+
+  --font-display: "Fredoka", "Baloo 2", ui-rounded, system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-banana-50 text-ink-900 font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-banana-400 text-ink-900;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .banana-gradient {
+    background: linear-gradient(135deg, #fff2b3 0%, #ffd93d 45%, #ffc914 100%);
+  }
+
+  .card-shadow {
+    box-shadow: 0 1px 2px rgba(74, 50, 0, 0.06), 0 8px 24px -8px rgba(74, 50, 0, 0.18);
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-4 focus-visible:ring-banana-300 focus-visible:ring-offset-2 focus-visible:ring-offset-banana-50;
+  }
+}
+
+/* Gentle, non-distracting entrance animation for picture cards */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-rise {
+  animation: fade-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  animation: pop 0.3s ease-out;
+}
+
+/* Scrollbar styling to match the theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff8e1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffd93d;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f2a900;
+}
